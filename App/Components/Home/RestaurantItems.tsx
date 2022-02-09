@@ -2,41 +2,42 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {FC} from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {RestaurantType} from '../../Models';
 import {RootStackParams} from '../../Navigation';
 // import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export const localRestaurants = [
+export const localRestaurants: RestaurantType[] = [
   {
     name: 'Beachside Bar',
-    image_url:
+    image:
       'https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg',
     categories: ['Cafe', 'Bar'],
-    price: '$$',
+    price: 15,
     reviews: 1244,
     rating: 4.5,
   },
   {
     name: 'Benihana',
-    image_url:
+    image:
       'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
     categories: ['Cafe', 'Bar'],
-    price: '$$',
+    price: 15,
     reviews: 1244,
     rating: 3.7,
   },
   {
     name: "India's Grill",
-    image_url:
+    image:
       'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
     categories: ['Indian', 'Bar'],
-    price: '$$',
+    price: 15,
     reviews: 700,
     rating: 4.9,
   },
 ];
 
 interface PropRestaurantItems {
-  restaurantData: any[];
+  restaurantData: RestaurantType[];
 }
 
 const RestaurantItems: FC<PropRestaurantItems> = ({restaurantData}) => {
@@ -52,15 +53,15 @@ const RestaurantItems: FC<PropRestaurantItems> = ({restaurantData}) => {
           onPress={() =>
             navigation.navigate('RestaurantDetail', {
               name: restaurant.name,
-              image: restaurant.image_url,
+              image: restaurant.image,
               price: restaurant.price,
-              reviews: restaurant.review_count,
+              reviews: restaurant.reviews,
               rating: restaurant.rating,
               categories: restaurant.categories,
             })
           }>
           <View style={styles.mainRestaurent}>
-            <RestaurantImage image={restaurant.image_url} />
+            <RestaurantImage image={restaurant.image} />
             <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
           </View>
         </TouchableOpacity>
@@ -88,7 +89,7 @@ const RestaurantImage: FC<PropRestaurantImage> = props => (
 );
 
 interface PropRestaurant {
-  rating: string;
+  rating: number;
   name: string;
 }
 

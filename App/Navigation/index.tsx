@@ -1,20 +1,14 @@
 import React from 'react';
 import {NavigationContainer, RouteProp} from '@react-navigation/native';
 import Profile from '../Screens/Profile';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '../Screens/Home';
 import RestaurantDetail from '../Screens/RestaurantDetail';
+import {RestaurantType} from '../Models';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 export type RootStackParams = {
   Home: undefined;
-  RestaurantDetail: {
-    name: string;
-    image: string;
-    price: string;
-    reviews: string;
-    rating: string;
-    categories: string[];
-  };
+  RestaurantDetail: RestaurantType;
   Profile: undefined;
 };
 

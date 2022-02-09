@@ -1,27 +1,26 @@
 import React, {FC, useState} from 'react';
-import {View, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
-import BottomTabs from '../Components/Home/BottomTabs';
+import {View, ScrollView, StyleSheet, SafeAreaView} from 'react-native';
 import Categories from '../Components/Home/Categories';
 import HeaderTabs from '../Components/Home/HeaderTab';
+import SearchBarGG from '../Components/Home/SearchBar';
 import RestaurantItems, {
   localRestaurants,
 } from '../Components/Home/RestaurantItems';
 
 const Home: FC = () => {
   const [activeTab, setActiveTab] = useState('Delivery');
-
+  const [city, setCity] = useState('San Francisco');
+  console.log(city);
   return (
     <SafeAreaView style={styles.mainArea}>
       <View style={styles.header}>
         <HeaderTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-        {/* <SearchBar cityHandler={setCity} /> */}
+        <SearchBarGG cityHandler={setCity} />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Categories />
         <RestaurantItems restaurantData={localRestaurants} />
       </ScrollView>
-      {/* <Divider width={1} /> */}
-      <BottomTabs />
     </SafeAreaView>
   );
 };

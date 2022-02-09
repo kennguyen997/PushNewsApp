@@ -3,10 +3,10 @@ import {StyleSheet, View} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 import About from '../Components/restaurantDetail/About';
 import MenuItems from '../Components/restaurantDetail/MenuItems';
-import {FoodsProps} from '../Models';
+import {FoodsType} from '../Models';
 import {RootStackParams} from '../Navigation';
 
-const foods: FoodsProps[] = [
+const foods: FoodsType[] = [
   {
     id: '1',
     title: 'Lasagna',

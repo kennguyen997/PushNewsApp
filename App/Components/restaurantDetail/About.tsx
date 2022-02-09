@@ -6,12 +6,9 @@ interface Props {
 }
 const About: FC<Props> = ({route}) => {
   const {name, image, price, reviews, rating, categories} = route.params;
-  const formattedCategories = categories
-    .map((cat: any) => cat.title)
-    .join(' • ');
-
+  const formattedCategories = categories.map((cat: any) => cat).join(' • ');
   const description = `${formattedCategories} ${
-    price ? ' • ' + price : ''
+    price ? ' • $' + price : ''
   } • 🎫 • ${rating} ⭐ (${reviews}+)`;
   return (
     <View>
