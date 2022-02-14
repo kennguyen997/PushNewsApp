@@ -8,6 +8,7 @@ import {RootStackParams} from '../../Navigation';
 
 export const localRestaurants: RestaurantType[] = [
   {
+    id: '1',
     name: 'Beachside Bar',
     image:
       'https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg',
@@ -17,6 +18,7 @@ export const localRestaurants: RestaurantType[] = [
     rating: 4.5,
   },
   {
+    id: '2',
     name: 'Benihana',
     image:
       'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
@@ -26,6 +28,7 @@ export const localRestaurants: RestaurantType[] = [
     rating: 3.7,
   },
   {
+    id: '3',
     name: "India's Grill",
     image:
       'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
@@ -50,16 +53,7 @@ const RestaurantItems: FC<PropRestaurantItems> = ({restaurantData}) => {
           key={index}
           activeOpacity={1}
           style={styles.restaurant}
-          onPress={() =>
-            navigation.navigate('RestaurantDetail', {
-              name: restaurant.name,
-              image: restaurant.image,
-              price: restaurant.price,
-              reviews: restaurant.reviews,
-              rating: restaurant.rating,
-              categories: restaurant.categories,
-            })
-          }>
+          onPress={() => navigation.navigate('RestaurantDetail', restaurant)}>
           <View style={styles.mainRestaurent}>
             <RestaurantImage image={restaurant.image} />
             <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />

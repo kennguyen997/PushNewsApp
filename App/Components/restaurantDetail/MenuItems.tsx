@@ -1,29 +1,38 @@
 import React, {FC} from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
-import {FoodsProps} from '../../Models';
-interface Prop {
-  restaurantName: string;
-  foods: FoodsProps[];
-  hideCheckbox?: boolean;
-  marginLeft?: number;
-}
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Pressable,
+} from 'react-native';
+import {FoodsType} from '../../Models';
 
-const MenuItems: FC<Prop> = ({foods, marginLeft}) => {
+type Props = {
+  restaurantName: string;
+  foods: FoodsType[];
+  pushToAddToCart: (food: FoodsType) => any;
+  marginLeft?: number;
+  hideCheckbox?: boolean;
+};
+
+const MenuItems: FC<Props> = ({foods, marginLeft, pushToAddToCart}) => {
   return (
-    // <View style={{flex: 1}}>
     <ScrollView showsVerticalScrollIndicator={false}>
       {foods.map(food => (
-        <View key={food.id} style={styles.menuItemStyle}>
-          <FoodInfo food={food} />
-          <FoodImage food={food} marginLeft={marginLeft ? marginLeft : 0} />
-        </View>
+        <Pressable onPress={() => pushToAddToCart(food)}>
+          <View key={food.id} style={styles.menuItemStyle}>
+            <FoodInfo food={food} />
+            <FoodImage food={food} marginLeft={marginLeft ? marginLeft : 0} />
+          </View>
+        </Pressable>
       ))}
     </ScrollView>
-    // </View>
   );
 };
 
-const FoodInfo: FC<{food: FoodsProps}> = ({food}) => (
+const FoodInfo: FC<{food: FoodsType}> = ({food}) => (
   <View style={styles.foodInfo}>
     <Text style={styles.titleStyle}>{food.title}</Text>
     <Text>{food.description}</Text>
@@ -31,7 +40,7 @@ const FoodInfo: FC<{food: FoodsProps}> = ({food}) => (
   </View>
 );
 
-const FoodImage: FC<{food: FoodsProps; marginLeft?: number}> = ({
+const FoodImage: FC<{food: FoodsType; marginLeft?: number}> = ({
   marginLeft,
   food,
 }) => (
@@ -49,6 +58,19 @@ const FoodImage: FC<{food: FoodsProps; marginLeft?: number}> = ({
 export default MenuItems;
 
 const styles = StyleSheet.create({
+  image: {
+    width: '100%',
+    height: 180,
+  },
+  buttonAddToCart: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+  },
   menuItemStyle: {
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -3,13 +3,15 @@ import {NavigationContainer, RouteProp} from '@react-navigation/native';
 import Profile from '../Screens/Profile';
 import Home from '../Screens/Home';
 import RestaurantDetail from '../Screens/RestaurantDetail';
-import {RestaurantType} from '../Models';
+import {FoodsType, RestaurantType} from '../Models';
+import AddToCart from '../Screens/AddToCart';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 export type RootStackParams = {
   Home: undefined;
   RestaurantDetail: RestaurantType;
   Profile: undefined;
+  AddToCart: FoodsType;
 };
 
 export type RootRouteProps<RouteName extends keyof RootStackParams> = RouteProp<
@@ -30,6 +32,23 @@ const NavigationRender = () => {
         />
         <Stack.Screen name="RestaurantDetail" component={RestaurantDetail} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen
+          name="AddToCart"
+          component={AddToCart}
+          // options={props => {
+          //   const {navigation} = props;
+          //   return {
+          //     headerLeft: () => (
+          //       <TouchableOpacity
+          //         onPress={() => navigation.toggleDrawer()}
+          //         style={{flexDirection: 'row', paddingLeft: 10}}>
+          //         <Icon size={15} name="close" />
+          //       </TouchableOpacity>
+          //     ),
+          //     gestureEnabled: false,
+          //   };
+          // }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

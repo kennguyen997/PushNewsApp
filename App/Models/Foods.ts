@@ -1,4 +1,5 @@
 export interface RestaurantType {
+  id: string;
   name: string;
   image: string;
   categories: string[];
