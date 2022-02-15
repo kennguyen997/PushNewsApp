@@ -1,136 +1,113 @@
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {FC} from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
+import hocHomeSection from '../../hoc/hocHomeSection';
 import {RestaurantType} from '../../Models';
 import {RootStackParams} from '../../Navigation';
+import {constants, globalStyles} from '../../Utility/constants';
 // import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export const localRestaurants: RestaurantType[] = [
-  {
-    name: 'Beachside Bar',
-    image:
-      'https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg',
-    categories: ['Cafe', 'Bar'],
-    price: 15,
-    reviews: 1244,
-    rating: 4.5,
-  },
-  {
-    name: 'Benihana',
-    image:
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
-    categories: ['Cafe', 'Bar'],
-    price: 15,
-    reviews: 1244,
-    rating: 3.7,
-  },
-  {
-    name: "India's Grill",
-    image:
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
-    categories: ['Indian', 'Bar'],
-    price: 15,
-    reviews: 700,
-    rating: 4.9,
-  },
-];
-
 interface PropRestaurantItems {
-  restaurantData: RestaurantType[];
+  data: RestaurantType[];
 }
+type NavigationType = NativeStackNavigationProp<RootStackParams>;
 
-const RestaurantItems: FC<PropRestaurantItems> = ({restaurantData}) => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParams>>();
+const RestaurantItems: FC<PropRestaurantItems> = ({data}) => {
+  const navigation = useNavigation<NavigationType>();
+
+  const _moveDetail = (item: RestaurantType) => {
+    navigation.navigate('RestaurantDetail', {
+      name: item.name,
+      image: item.image,
+      price: item.price,
+      reviews: item.reviews,
+      rating: item.rating,
+      categories: item.categories,
+    });
+  };
+
   return (
-    <>
-      {restaurantData.map((restaurant, index) => (
+    <ScrollView
+      horizontal
+      style={styles.items}
+      contentContainerStyle={globalStyles.appBg}>
+      {data.map((item, index) => (
         <TouchableOpacity
           key={index}
           activeOpacity={1}
-          style={styles.restaurant}
-          onPress={() =>
-            navigation.navigate('RestaurantDetail', {
-              name: restaurant.name,
-              image: restaurant.image,
-              price: restaurant.price,
-              reviews: restaurant.reviews,
-              rating: restaurant.rating,
-              categories: restaurant.categories,
-            })
-          }>
-          <View style={styles.mainRestaurent}>
-            <RestaurantImage image={restaurant.image} />
-            <RestaurantInfo name={restaurant.name} rating={restaurant.rating} />
-          </View>
+          onPress={() => _moveDetail(item)}>
+          <RestaurantItem data={item} />
         </TouchableOpacity>
       ))}
-    </>
+    </ScrollView>
   );
 };
 
-interface PropRestaurantImage {
-  image: string;
+export default hocHomeSection(RestaurantItems, "Today's Offers");
+
+// Restaurant item
+interface RestaurantItemProp {
+  data: RestaurantType;
 }
 
-const RestaurantImage: FC<PropRestaurantImage> = props => (
-  <>
-    <Image
-      source={{
-        uri: props.image,
-      }}
-      style={styles.image}
-    />
-    <TouchableOpacity style={styles.subImage}>
-      {/* <MaterialCommunityIcons name="heart-outline" size={25} color="#fff" /> */}
-    </TouchableOpacity>
-  </>
-);
-
-interface PropRestaurant {
-  rating: number;
-  name: string;
-}
-
-const RestaurantInfo: FC<PropRestaurant> = props => (
-  <View style={styles.restaurantInfo}>
-    <View>
-      <Text style={styles.restaurantName}>{props.name}</Text>
-      <Text style={styles.restaurantTime}>30-45 • min</Text>
+const RestaurantItem: FC<RestaurantItemProp> = ({data}) => {
+  return (
+    <View style={[styles.item, globalStyles.shadow_2]}>
+      <Image source={{uri: data.image}} style={styles.image} />
+      <View style={styles.info}>
+        <View>
+          <Text style={styles.name}>{data.name}</Text>
+          <Text style={styles.time}>30-45 • min</Text>
+        </View>
+        <View style={styles.restaurantRating}>
+          <Text style={styles.rating}>{data.rating}</Text>
+        </View>
+      </View>
     </View>
-    <View style={styles.restaurantRating}>
-      <Text>{props.rating}</Text>
-    </View>
-  </View>
-);
+  );
+};
 
-export default RestaurantItems;
+const widthItem = (constants.windowWidth / 13) * 9;
+const heightItem = (widthItem * 5) / 6;
 
 const styles = StyleSheet.create({
+  items: {},
+  item: {
+    margin: 5,
+    backgroundColor: 'white',
+    height: heightItem,
+    width: widthItem,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
   image: {
     width: '100%',
-    height: 180,
+    height: '75%',
   },
-  subImage: {
-    position: 'absolute',
-    right: 20,
-    top: 20,
-  },
-  restaurantInfo: {
+  info: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 10,
+    padding: 5,
   },
-  restaurantName: {
+  name: {
     fontSize: 15,
     fontWeight: 'bold',
+    color: '#000000',
   },
-  restaurantTime: {
+  time: {
     fontSize: 13,
     color: 'gray',
   },
+  rating: {},
   restaurantRating: {
     backgroundColor: '#eee',
     height: 30,
@@ -141,10 +118,5 @@ const styles = StyleSheet.create({
   },
   restaurant: {
     marginBottom: 30,
-  },
-  mainRestaurent: {
-    marginTop: 10,
-    padding: 15,
-    backgroundColor: 'white',
   },
 });

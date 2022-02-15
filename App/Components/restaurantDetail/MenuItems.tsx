@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
-import {FoodsProps} from '../../Models';
+import {FoodType} from '../../Models';
 interface Prop {
   restaurantName: string;
-  foods: FoodsProps[];
+  foods: FoodType[];
   hideCheckbox?: boolean;
   marginLeft?: number;
 }
@@ -23,7 +23,7 @@ const MenuItems: FC<Prop> = ({foods, marginLeft}) => {
   );
 };
 
-const FoodInfo: FC<{food: FoodsProps}> = ({food}) => (
+const FoodInfo: FC<{food: FoodType}> = ({food}) => (
   <View style={styles.foodInfo}>
     <Text style={styles.titleStyle}>{food.title}</Text>
     <Text>{food.description}</Text>
@@ -31,7 +31,7 @@ const FoodInfo: FC<{food: FoodsProps}> = ({food}) => (
   </View>
 );
 
-const FoodImage: FC<{food: FoodsProps; marginLeft?: number}> = ({
+const FoodImage: FC<{food: FoodType; marginLeft?: number}> = ({
   marginLeft,
   food,
 }) => (

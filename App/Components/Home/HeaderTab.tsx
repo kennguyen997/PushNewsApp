@@ -10,14 +10,14 @@ const HeaderTabs: FC<Prop> = props => {
   return (
     <View style={styles.header}>
       <HeaderButton
-        text="Delivery"
+        text="Restaurants"
         btnColor="black"
         textColor="white"
         activeTab={props.activeTab}
         setActiveTab={props.setActiveTab}
       />
       <HeaderButton
-        text="Pickup"
+        text="Promos"
         btnColor="white"
         textColor="black"
         activeTab={props.activeTab}
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
   textBtn: {
     fontSize: 15,
     fontWeight: '900',
+    color: 'black',
   },
   activeBtn: {
     backgroundColor: 'black',

@@ -7,10 +7,12 @@ export interface RestaurantType {
   rating: number;
 }
 
-export interface FoodsType {
+export interface FoodType {
   id: string;
   title: string;
   description: string;
   price: string;
   image: string;
+  rating: number;
+  waitingTime: number;
 }
