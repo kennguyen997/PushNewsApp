@@ -9,18 +9,21 @@ interface Props {
 
 const FoodSmallItem: FC<Props> = ({data}) => {
   return (
-    <View>
-      <Image source={{uri: data.image}} style={styles.image} />
-      <View>
-        <Text>{data.title}</Text>
-        <Text>{data.description}</Text>
+    <View style={styles.container}>
+      <Image source={{uri: data.image}} style={styles.img} />
+      <View style={styles.content}>
+        <Text style={styles.title} numberOfLines={1}>
+          {data.title}
+        </Text>
+        <Text style={styles.description} numberOfLines={2}>
+          {data.description}
+        </Text>
         <View>
           <Text>{data.rating}</Text>
           <Text>{data.waitingTime} mins</Text>
         </View>
         <Text>$ {data.price}</Text>
       </View>
-      <Text>FoodSmallItem</Text>
     </View>
   );
 };
@@ -28,12 +31,34 @@ const FoodSmallItem: FC<Props> = ({data}) => {
 export default FoodSmallItem;
 
 const widthImgItem = constants.windowWidth / 4;
-const heightImgItem = (widthImgItem * 4) / 3;
+const heightImgItem = (widthImgItem * 5) / 4;
 
 const styles = StyleSheet.create({
-  image: {
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 5,
+    margin: 5,
+    borderColor: constants.colorGray,
+    borderWidth: 1,
+    borderRadius: 15,
+  },
+  content: {
+    flex: 1,
+    paddingLeft: 10,
+    paddingRight: 5,
+  },
+  img: {
     width: widthImgItem,
     height: heightImgItem,
     borderRadius: 15,
+  },
+  title: {
+    flex: 1,
+    fontWeight: '700',
+    fontSize: 20,
+  },
+  description: {
+    flex: 1,
   },
 });

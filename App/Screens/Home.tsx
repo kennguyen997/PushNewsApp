@@ -7,6 +7,7 @@ import Banner from '../Components/Home/Banner';
 import {dataFake} from '../Utility/data';
 import Delivery from '../Components/Home/Delivery';
 import {globalStyles} from '../Utility/constants';
+import Offers from '../Components/Home/Offers';
 
 const Home: FC = () => {
   const [activeTab, setActiveTab] = useState('Delivery');
@@ -21,10 +22,10 @@ const Home: FC = () => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={globalStyles.appBg}>
-        {/* <Categories /> */}
         <Banner />
         <RestaurantItems data={dataFake.restaurants} />
         <Delivery data={dataFake.foods} />
+        <Offers data={dataFake.foods} />
       </ScrollView>
     </SafeAreaView>
   );
