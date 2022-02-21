@@ -1,13 +1,13 @@
 import React, {FC, useState} from 'react';
 import {View, ScrollView, StyleSheet, SafeAreaView} from 'react-native';
-import HeaderTabs from '../Components/Home/HeaderTab';
-import SearchBarGG from '../Components/Home/SearchBar';
-import RestaurantItems from '../Components/Home/RestaurantItems';
-import Banner from '../Components/Home/Banner';
-import {dataFake} from '../Utility/data';
-import Delivery from '../Components/Home/Delivery';
-import {globalStyles} from '../Utility/constants';
-import Offers from '../Components/Home/Offers';
+import HeaderTabs from './HeaderTab';
+import SearchBarGG from './SearchBar';
+import Restaurants from './Restaurants';
+import Banner from './Banner';
+import {dataFake} from '../../Utility/data';
+import Delivery from './Delivery';
+import {globalStyles} from '../../Utility/constants';
+import Offers from './Offers';
 
 const Home: FC = () => {
   const [activeTab, setActiveTab] = useState('Delivery');
@@ -23,7 +23,7 @@ const Home: FC = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={globalStyles.appBg}>
         <Banner />
-        <RestaurantItems data={dataFake.restaurants} />
+        <Restaurants data={dataFake.restaurants} />
         <Delivery data={dataFake.foods} />
         <Offers data={dataFake.foods} />
       </ScrollView>

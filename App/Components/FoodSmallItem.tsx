@@ -1,7 +1,7 @@
 import {Image, StyleSheet, View} from 'react-native';
 import React, {FC} from 'react';
-import {FoodType} from '../../Models';
-import {constants, Text} from '../../Utility';
+import {FoodType} from '../Models';
+import {constants, Text} from '../Utility';
 
 interface Props {
   data: FoodType;

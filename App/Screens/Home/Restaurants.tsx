@@ -13,26 +13,17 @@ import hocHomeSection from '../../hoc/hocHomeSection';
 import {RestaurantType} from '../../Models';
 import {RootStackParams} from '../../Navigation';
 import {constants, globalStyles} from '../../Utility/constants';
-// import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-interface PropRestaurantItems {
+interface Props {
   data: RestaurantType[];
 }
 type NavigationType = NativeStackNavigationProp<RootStackParams>;
 
-const RestaurantItems: FC<PropRestaurantItems> = ({data}) => {
+const Restaurants: FC<Props> = ({data}) => {
   const navigation = useNavigation<NavigationType>();
 
   const _moveDetail = (item: RestaurantType) => {
-    navigation.navigate('RestaurantDetail', {
-      id: item.id,
-      name: item.name,
-      image: item.image,
-      price: item.price,
-      reviews: item.reviews,
-      rating: item.rating,
-      categories: item.categories,
-    });
+    navigation.navigate('RestaurantDetail', {data: item});
   };
 
   return (
@@ -52,7 +43,7 @@ const RestaurantItems: FC<PropRestaurantItems> = ({data}) => {
   );
 };
 
-export default hocHomeSection(RestaurantItems, "Today's Offers");
+export default hocHomeSection(Restaurants, "Today's Offers");
 
 // Restaurant item
 interface RestaurantItemProp {

@@ -1,18 +1,17 @@
 import React, {FC} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
-import About from '../Components/restaurantDetail/About';
-import MenuItems from '../Components/restaurantDetail/MenuItems';
-import {RootStackParams} from '../Navigation';
-import {dataFake} from '../Utility/data';
-import {FoodType} from '../Models';
-import ViewCart from '../Components/restaurantDetail/ViewCart';
-import {RootState, selectors} from '../Redux/Slices';
+import Menu from './Menu';
+import {RootStackParams} from '../../Navigation';
+import {dataFake} from '../../Utility/data';
+import {FoodType} from '../../Models';
+import ViewCart from './ViewCart';
+import {RootState, selectors} from '../../Redux/Slices';
 import {connect} from 'react-redux';
+import About from './About';
 
 type Props = StackScreenProps<RootStackParams, 'RestaurantDetail'> & {
   // If you have any other custom props, this is totally optional.
-  customProp: number;
 } & ReturnType<typeof mapStateToProps>;
 
 const RestaurantDetail: FC<Props> = ({route, order, navigation}) => {
@@ -21,10 +20,10 @@ const RestaurantDetail: FC<Props> = ({route, order, navigation}) => {
   };
 
   return (
-    <View style={styles.mainArea}>
-      <About route={route} />
-      <MenuItems
-        restaurantName={route.params.name}
+    <View style={styles.container}>
+      <About data={route.params.data} />
+      <Menu
+        restaurantName={route.params.data.name}
         foods={dataFake.foods}
         pushToAddToCart={pushToAddToCart}
       />
@@ -40,5 +39,7 @@ const mapStateToProps = (state: RootState) => ({
 export default connect(mapStateToProps)(RestaurantDetail);
 
 const styles = StyleSheet.create({
-  mainArea: {flex: 1},
+  container: {
+    flex: 1,
+  },
 });

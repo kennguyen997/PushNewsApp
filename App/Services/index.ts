@@ -2,7 +2,7 @@ import {AsyncStorage} from 'react-native';
 import axios from 'axios';
 import Config from 'react-native-config';
 
-import {AccountGateway} from '../Gateways/AccountGateway';
+import {AccountGateway} from './Gateways/AccountGateway';
 
 import {AccountService} from './AccountService';
 

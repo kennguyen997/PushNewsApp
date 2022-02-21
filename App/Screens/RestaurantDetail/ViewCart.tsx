@@ -8,7 +8,7 @@ interface Prop {
 }
 
 const ViewCart: FC<Prop> = ({order}) => {
-  const {restaurent, carts} = order;
+  const {restaurant, carts} = order;
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -26,13 +26,13 @@ const ViewCart: FC<Prop> = ({order}) => {
       <>
         <View style={styles.modalContainer}>
           <View style={styles.modalCheckoutContainer}>
-            <Text style={styles.restaurantName}>{restaurent.name}</Text>
+            <Text style={styles.restaurantName}>{restaurant.name}</Text>
             {carts.map((item, index) => (
               <OrderItem key={index} cart={item} />
             ))}
             <View style={styles.subtotalContainer}>
               <Text style={styles.subtotalText}>Subtotal</Text>
-              <Text {...restaurent}>{totalUSD}</Text>
+              <Text {...restaurant}>{totalUSD}</Text>
             </View>
             <View>
               <TouchableOpacity

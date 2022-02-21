@@ -4,7 +4,7 @@ import {
   SignUp,
   ChangePassword,
 } from '../Models/Account';
-import {AccountGateway} from '../Gateways/AccountGateway';
+import {AccountGateway} from './Gateways/AccountGateway';
 
 export class AccountService {
   private accountGateway: AccountGateway;

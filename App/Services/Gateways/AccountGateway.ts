@@ -1,20 +1,20 @@
 import {AxiosInstance} from 'axios';
-import {AsyncStorage} from 'react-native';
+import {AsyncStorageStatic} from 'react-native';
 import {
   LoginCredentials,
   LoginUser,
   SignUp,
   ResultAccount,
   ChangePassword,
-} from '../Models/Account';
+} from '../../Models/Account';
 
 export class AccountGateway {
-  private localStorageConnector: AsyncStorage;
+  private localStorageConnector: AsyncStorageStatic;
   private restConnector: AxiosInstance;
 
   constructor(
     restConnector: AxiosInstance,
-    localStorageConnector: AsyncStorage,
+    localStorageConnector: AsyncStorageStatic,
   ) {
     this.restConnector = restConnector;
     this.localStorageConnector = localStorageConnector;

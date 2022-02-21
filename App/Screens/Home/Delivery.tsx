@@ -2,7 +2,7 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import React, {FC} from 'react';
 import hocHomeSection from '../../hoc/hocHomeSection';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import FoodSmallItem from './FoodSmallItem';
+import FoodSmallItem from '../../Components/FoodSmallItem';
 import {FoodType} from '../../Models';
 import {constants, globalStyles} from '../../Utility/constants';
 

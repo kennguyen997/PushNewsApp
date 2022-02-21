@@ -17,14 +17,14 @@ type Props = {
   hideCheckbox?: boolean;
 };
 
-const MenuItems: FC<Props> = ({foods, marginLeft, pushToAddToCart}) => {
+const Menu: FC<Props> = ({foods, marginLeft, pushToAddToCart}) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      {foods.map(food => (
-        <Pressable onPress={() => pushToAddToCart(food)}>
-          <View key={food.id} style={styles.menuItemStyle}>
-            <FoodInfo food={food} />
-            <FoodImage food={food} marginLeft={marginLeft ? marginLeft : 0} />
+      {foods.map((item, index) => (
+        <Pressable key={index} onPress={() => pushToAddToCart(item)}>
+          <View key={item.id} style={styles.menuItemStyle}>
+            <FoodInfo food={item} />
+            <FoodImage food={item} marginLeft={marginLeft ? marginLeft : 0} />
           </View>
         </Pressable>
       ))}
@@ -55,7 +55,7 @@ const FoodImage: FC<{food: FoodType; marginLeft?: number}> = ({
   </View>
 );
 
-export default MenuItems;
+export default Menu;
 
 const styles = StyleSheet.create({
   image: {

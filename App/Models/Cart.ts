@@ -1,6 +1,6 @@
-import {FoodsType, RestaurantType} from '.';
+import {FoodType, RestaurantType} from '.';
 
 export interface OrderStyle {
-  restaurent: RestaurantType;
-  carts: FoodsType[];
+  restaurant: RestaurantType;
+  carts: FoodType[];
 }

@@ -2,7 +2,7 @@ import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import React, {FC} from 'react';
 import hocHomeSection from '../../hoc/hocHomeSection';
 import {FoodType} from '../../Models';
-import FoodSmallItem from './FoodSmallItem';
+import FoodSmallItem from '../../Components/FoodSmallItem';
 
 interface Props {
   data: FoodType[];

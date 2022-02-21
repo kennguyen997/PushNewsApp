@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {FoodsType} from '../../Models';
+import {FoodType} from '../../Models';
 
 interface Props {
-  cart: FoodsType;
+  cart: FoodType;
 }
 
 const OrderItem: FC<Props> = ({cart}) => {
