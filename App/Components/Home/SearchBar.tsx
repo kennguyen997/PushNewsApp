@@ -15,7 +15,6 @@ const SearchBarGG: FC<Props> = ({cityHandler}) => {
       <GooglePlacesAutocomplete
         query={{key: 'AIzaSyBfp-ATr0I5TJh-kMwX9Ri9zB8J6GqhiN8'}}
         onPress={(data: GooglePlaceData) => {
-          console.log(data.description);
           const city = data.description.split(',')[0];
           cityHandler(city);
         }}

@@ -58,3 +58,7 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+.eslintcache
+pakage-lock.json
+yarn.lock

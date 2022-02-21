@@ -1,6 +1,6 @@
 import {createSlice, Dispatch} from '@reduxjs/toolkit';
 import {Alert} from 'react-native';
-import {LoginCredentials, LoginUser} from '../../Models/Account';
+import {LoginCredentials, LoginUser} from '../../Models';
 import {accountService} from '../../Services';
 import {AppThunk} from '../store';
 import {RootState} from './index';

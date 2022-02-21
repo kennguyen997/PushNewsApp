@@ -25,6 +25,7 @@ const RestaurantItems: FC<PropRestaurantItems> = ({data}) => {
 
   const _moveDetail = (item: RestaurantType) => {
     navigation.navigate('RestaurantDetail', {
+      id: item.id,
       name: item.name,
       image: item.image,
       price: item.price,

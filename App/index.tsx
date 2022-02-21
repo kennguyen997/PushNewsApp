@@ -3,12 +3,16 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import 'react-native-gesture-handler';
 import NavigationRender from './Navigation';
 import {LogBox} from 'react-native';
+import {Provider} from 'react-redux';
+import store from './Redux/store';
 
 const App: FC = () => {
   return (
-    <SafeAreaProvider>
-      <NavigationRender />
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <NavigationRender />
+      </SafeAreaProvider>
+    </Provider>
   );
 };
 export default App;

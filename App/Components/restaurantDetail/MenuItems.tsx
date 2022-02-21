@@ -1,25 +1,34 @@
 import React, {FC} from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Pressable,
+} from 'react-native';
 import {FoodType} from '../../Models';
-interface Prop {
+
+type Props = {
   restaurantName: string;
   foods: FoodType[];
-  hideCheckbox?: boolean;
+  pushToAddToCart: (food: FoodType) => any;
   marginLeft?: number;
-}
+  hideCheckbox?: boolean;
+};
 
-const MenuItems: FC<Prop> = ({foods, marginLeft}) => {
+const MenuItems: FC<Props> = ({foods, marginLeft, pushToAddToCart}) => {
   return (
-    // <View style={{flex: 1}}>
     <ScrollView showsVerticalScrollIndicator={false}>
       {foods.map(food => (
-        <View key={food.id} style={styles.menuItemStyle}>
-          <FoodInfo food={food} />
-          <FoodImage food={food} marginLeft={marginLeft ? marginLeft : 0} />
-        </View>
+        <Pressable onPress={() => pushToAddToCart(food)}>
+          <View key={food.id} style={styles.menuItemStyle}>
+            <FoodInfo food={food} />
+            <FoodImage food={food} marginLeft={marginLeft ? marginLeft : 0} />
+          </View>
+        </Pressable>
       ))}
     </ScrollView>
-    // </View>
   );
 };
 
@@ -49,6 +58,19 @@ const FoodImage: FC<{food: FoodType; marginLeft?: number}> = ({
 export default MenuItems;
 
 const styles = StyleSheet.create({
+  image: {
+    width: '100%',
+    height: 180,
+  },
+  buttonAddToCart: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: '100%',
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+  },
   menuItemStyle: {
     flexDirection: 'row',
     justifyContent: 'space-between',

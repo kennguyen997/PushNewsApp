@@ -1,12 +1,13 @@
 import React, {FC} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import {FoodsType} from '../../Models';
 
 interface Props {
-  item: {title: string; price: number};
+  cart: FoodsType;
 }
 
-const OrderItem: FC<Props> = ({item}) => {
-  const {title, price} = item;
+const OrderItem: FC<Props> = ({cart}) => {
+  const {title, price} = cart;
   return (
     <View style={styles.orderItem}>
       <Text style={styles.title}>{title}</Text>
