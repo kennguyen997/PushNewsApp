@@ -8,7 +8,7 @@ interface Props {
   data: FoodType[];
 }
 
-const Offers: FC<Props> = ({data}) => {
+const AllOffers: FC<Props> = ({data}) => {
   return (
     <View style={styles.container}>
       {data.map((item, index) => (
@@ -20,7 +20,7 @@ const Offers: FC<Props> = ({data}) => {
   );
 };
 
-export default hocHomeSection(Offers, 'All Offers');
+export default hocHomeSection(AllOffers, 'All Offers');
 
 const styles = StyleSheet.create({
   container: {},

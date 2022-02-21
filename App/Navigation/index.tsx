@@ -1,14 +1,14 @@
 import React from 'react';
 import {NavigationContainer, RouteProp} from '@react-navigation/native';
 import Profile from '../Screens/Profile';
-import Home from '../Screens/Home';
-import RestaurantDetail from '../Screens/RestaurantDetail';
+import RestaurantDetail from '../Screens/RestaurantDetail/index';
 import {FoodType, RestaurantType} from '../Models';
 import AddToCart from '../Screens/AddToCart';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import HomeTabs from './HomeTab';
 
 export type RootStackParams = {
-  Home: undefined;
+  HomeTabs: undefined;
   RestaurantDetail: {data: RestaurantType};
   Profile: undefined;
   AddToCart: FoodType;
@@ -24,10 +24,10 @@ const Stack = createNativeStackNavigator<RootStackParams>();
 const NavigationRender = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="HomeTabs">
         <Stack.Screen
-          name="Home"
-          component={Home}
+          name="HomeTabs"
+          component={HomeTabs}
           options={{headerShown: false}}
         />
         <Stack.Screen
