@@ -4,7 +4,7 @@ import hocHomeSection from '../../hoc/hocHomeSection';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import FoodSmallItem from '../../Components/FoodSmallItem';
 import {FoodType} from '../../Models';
-import {constants, globalStyles} from '../../Utility/constants';
+import {constants} from '../../Utility/constants';
 
 interface Props {
   data: FoodType[];
@@ -46,7 +46,7 @@ const Delivery: FC<Props> = ({data}) => {
   };
 
   return (
-    <ScrollView horizontal contentContainerStyle={globalStyles.appBg}>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       {_render()}
     </ScrollView>
   );

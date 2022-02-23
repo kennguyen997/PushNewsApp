@@ -30,6 +30,7 @@ const Restaurants: FC<Props> = ({data}) => {
     <ScrollView
       horizontal
       style={styles.items}
+      showsHorizontalScrollIndicator={false}
       contentContainerStyle={globalStyles.appBg}>
       {data.map((item, index) => (
         <TouchableOpacity

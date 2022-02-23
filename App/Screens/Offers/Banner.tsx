@@ -3,7 +3,10 @@ import React, {FC} from 'react';
 
 const Banner: FC = () => {
   return (
-    <ScrollView horizontal style={styles.container}>
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      style={styles.container}>
       <View style={styles.item}>
         <View style={styles.contentItem} />
       </View>
@@ -24,9 +27,8 @@ const styles = StyleSheet.create({
   item: {
     height: 150,
     width: 250,
-
     padding: 5,
-    borderRadius: 30,
+    borderRadius: 20,
     overflow: 'hidden',
   },
   contentItem: {
